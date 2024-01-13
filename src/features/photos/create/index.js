@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addPhoto } from '../photos/photo.slice';
+import { addPhoto } from '../photos.slice';
 
 
 // Task 2: Import the `useDispatch()` method from the appropriate package
@@ -23,7 +23,7 @@ export default function CreatePhoto() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    dispatch(addPhoto(event.formData))
+    dispatch(addPhoto(formData))
     // Task 5: Dispatch the `addPhoto()` action creator, passing in the form data
     setFormData({ imageUrl: '', caption: '' });
   }

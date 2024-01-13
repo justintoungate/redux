@@ -1,18 +1,19 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   fetchSuggestion,
   selectError,
   selectLoading,
-  selectSuggestion
   // Task 18: Import the `selectSuggestion()` selector from the suggestion slice
-} from './suggestion.slice';
-import './suggestion.css';
+  selectSuggestion,
+} from "./suggestion.slice";
+import "./suggestion.css";
 
 export default function Suggestion() {
   // Task 19: Call useSelector() with the selectSuggestion() selector
   // The component needs to access the `imageUrl` and `caption` properties of the suggestion object.
-  const suggestion = useSelector(selectSuggestion)
+  const { imageUrl, caption } = useSelector(selectSuggestion);
+  console.log("IMAGEURL", imageUrl)
   const loading = useSelector(selectLoading);
   const error = useSelector(selectError);
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ export default function Suggestion() {
   useEffect(() => {
     async function loadSuggestion() {
       // Task 20: Dispatch the fetchSuggestion() action creator
-      dispatch(fetchSuggestion);
+      dispatch(fetchSuggestion());
     }
     loadSuggestion();
   }, [dispatch]);
@@ -35,7 +36,7 @@ export default function Suggestion() {
     render = (
       <>
         <img alt={caption} src={imageUrl} />
-        <p>{imageUrl}</p> 
+        <p>{imageUrl}</p>
       </>
     );
   }
